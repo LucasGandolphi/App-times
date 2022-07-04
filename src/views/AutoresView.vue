@@ -3,25 +3,28 @@ import { v4 as uuidv4 } from "uuid";
 export default {
   data() {
     return {
-      jogadores: [
-        { id: "c11556b2-18d2-48d7-ac95-df6d0431f3e6", nome: "jogador1", timeid:"001"},
-        { id: "0204d8f7-52a5-463b-9d6f-3cf6d5ecffe9", nome: "jogador2", timeid:"002"},
-        { id: "2148db23-7480-40d7-9cea-ae5876b01886", nome: "jogador3", timeid:"003"},
+      autores: [
+        { id: "c11556b2-18d2-48d7-ac95-df6d0431f3e6", nome: "Autor1" },
+        { id: "0204d8f7-52a5-463b-9d6f-3cf6d5ecffe9", nome: "Autor2" },
+        { id: "2148db23-7480-40d7-9cea-ae5876b01886", nome: "Autor3" },
       ],
-      novo_jogador: "",
-      novo_times: "",
+      novo_autor: "",
     };
   },
   methods: {
     salvar() {
-      const novo_id = uuidv4();
-      this.jogadores.push(
-        {
+      if (this.novo_autor !== "") {
+        const novo_id = uuidv4();
+        this.autores.push({
           id: novo_id,
-          nome: this.novo_jogador,
-          time: this.novo_times
-        }
-      );
+          nome: this.novo_autor,
+        });
+        this.novo_autor = "";
+      }
+    },
+    excluir(autor) {
+      const indice = this.autores.indexOf(autor);
+      this.autores.splice(indice, 1);
     },
   },
 };
@@ -31,40 +34,39 @@ export default {
   <main>
     <div class="container">
       <div class="title">
-        <h2>Gerenciamento de times</h2>
+        <h2>Autores</h2>
       </div>
       <div class="form-input">
-        <input type="text" placeholder="jogador" v-model="novo_jogador" />
-        <input type="text" placeholder="time" v-model="novo_times" />
+        <input type="text" placeholder="Autor" v-model="novo_autor" />
         <button @click="salvar">Salvar</button>
       </div>
-      <div class="list-times">
+      <div class="list-aut">
         <table>
           <thead>
             <tr>
               <th>ID</th>
-              <th>Nome</th>
-              <th>Time.id</th>
+              <th>Autor</th>
               <th>Ações</th>
             </tr>
           </thead>
-          
+
           <tbody>
-            <tr v-for="jogador in jogadores" :key="jogador.id">
-              <td>{{ jogador.id }}</td>
-              <td>{{ jogador.nome }}</td>
-              <td>{{ jogador.time }}</td>
-              <td>???</td>
+            <tr v-for="autor in autores" :key="autor.id">
+              <td>{{ autor.id }}</td>
+              <td>{{ autor.nome }}</td>
+              <button @click="excluir(autor)">Excluir</button>
             </tr>
           </tbody>
-
         </table>
       </div>
     </div>
   </main>
 </template>
-
 <style>
+main {
+  background-color: rgba(146, 146, 146, 0.466);
+  border-radius: 30px;
+}
 .title {
   text-align: center;
   margin: 2rem 0;
@@ -87,7 +89,7 @@ export default {
   padding: 0.5rem;
   border: 1px solid black;
   border-radius: 10px;
-  background-color: rgb(6, 103, 40);
+  background-color: rgb(53, 25, 2);
   color: #fff;
   font-weight: bold;
   margin-left: 1%;
@@ -107,7 +109,7 @@ table {
 }
 
 table thead {
-  background-color: rgb(6, 103, 40);
+  background-color: rgb(53, 25, 2);
   color: #fff;
 }
 
@@ -119,4 +121,3 @@ table tbody tr:nth-child(odd) {
   background-color: #ccc;
 }
 </style>
-

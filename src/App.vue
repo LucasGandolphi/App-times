@@ -22,6 +22,10 @@ import FooterComp from "@/components/template/FooterComp.vue";
   font-family: "Cormorant Garamond", serif;
 }
 
+body {
+  background-image: url("./assets/bwall.jpg");
+}
+
 main {
   height: 78%;
 }
@@ -32,6 +36,6 @@ a {
 }
 
 .router-link-active {
-  color: rgb(17, 206, 0);
+  color: rgb(255, 0, 0);
 }
 </style>

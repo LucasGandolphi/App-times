@@ -1,13 +1,13 @@
 <template>
-  <footer>Rodape</footer>
+  <footer>Desencolvdo por Cauã Y. e Lucas G.</footer>
 </template>
 
 <style>
 footer {
   height: 10%;
-  background-color: rgb(6, 103, 40);
-  color: black;
-  font-size: 1.3rem;
+  background-color: rgb(53, 25, 2);
+  color: #fff;
+  font-size: 10px;
   display: flex;
   align-items: center;
   padding-left: 20px;
